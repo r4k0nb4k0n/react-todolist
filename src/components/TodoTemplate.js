@@ -2,11 +2,11 @@ import React from "react";
 import styled from "styled-components";
 
 const TodoTemplateBlock = styled.div`
-  width: 50vw;
+  width: 70vw;
   height: 80vh;
 
   position: relative;
-  background-color: dark-gray;
+  background-color: #1f1f1f;
   border-radius: 16px;
   box-shadow: 0 0 8px 0 #02feff;
 
