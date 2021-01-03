@@ -1,7 +1,8 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import styled, { css } from "styled-components";
 import { MdDone, MdDelete } from "react-icons/md";
-import { useTodoDispatch } from "../TodoContext";
+import { toggleTodoAsync, removeTodoAsync } from "./todoSlice";
 
 const Remove = styled.div`
   display: flex;
@@ -59,24 +60,16 @@ const Text = styled.div`
     `}
 `;
 
-function TodoItem({ id, done, text }) {
-  const dispatch = useTodoDispatch();
-  const onToggle = () =>
-    dispatch({
-      type: "TOGGLE",
-      id,
-    });
-  const onRemove = () =>
-    dispatch({
-      type: "REMOVE",
-      id,
-    });
+function TodoItem({ id, completed, content }) {
+  const dispatch = useDispatch();
+  const onToggle = () => dispatch(toggleTodoAsync({ id, content, completed }));
+  const onRemove = () => dispatch(removeTodoAsync(id));
   return (
     <TodoItemBlock>
-      <CheckCircle done={done} onClick={onToggle}>
-        {done && <MdDone />}
+      <CheckCircle done={completed} onClick={onToggle}>
+        {completed && <MdDone />}
       </CheckCircle>
-      <Text done={done}>{text}</Text>
+      <Text done={completed}>{content}</Text>
       <Remove onClick={onRemove}>
         <MdDelete />
       </Remove>

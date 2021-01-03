@@ -1,6 +1,7 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
-import { useTodoState } from "../TodoContext";
+import { selectTodos } from "./todoSlice";
 
 const TodoHeadBlock = styled.div`
   padding-top: 48px;
@@ -25,7 +26,7 @@ const TodoHeadBlock = styled.div`
 `;
 
 function TodoHead() {
-  const todos = useTodoState();
+  const todos = useSelector(selectTodos);
   const today = new Date();
   const dateString = today.toLocaleDateString("ko-KR", {
     year: "numeric",
