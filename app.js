@@ -31,7 +31,7 @@ const PORT = 5000;
 
 app.use(express.json());
 
-app.get("/", (req, res) => {
+app.get("/api", (req, res) => {
   console.log("GET\t/");
   res.send("HELLo World!");
 });
@@ -40,7 +40,7 @@ app.get("/", (req, res) => {
  **	GET /todos/
  */
 
-app.get("/todos/", (req, res) => {
+app.get("/api/todos/", (req, res) => {
   console.log("GET\t/todos/");
   res.json(dbJSON.todos);
 });
@@ -49,7 +49,7 @@ app.get("/todos/", (req, res) => {
  **	GET /todos/:todo_id
  */
 
-app.get("/todos/:todo_id", (req, res) => {
+app.get("/api/todos/:todo_id", (req, res) => {
   try {
     var index = dbJSON.todos.findIndex(
       (todo) => todo.id === parseInt(req.params.todo_id)
@@ -67,7 +67,7 @@ app.get("/todos/:todo_id", (req, res) => {
  ** POST /todos/
  */
 
-app.post("/todos/", (req, res) => {
+app.post("/api/todos/", (req, res) => {
   try {
     var payload = {
       id: dbJSON.todos.length + 1,
@@ -89,7 +89,7 @@ app.post("/todos/", (req, res) => {
  **	PATCH /todos/:todo_id
  */
 
-app.patch("/todos/:todo_id", (req, res) => {
+app.patch("/api/todos/:todo_id", (req, res) => {
   try {
     var index = dbJSON.todos.findIndex(
       (todo) => todo.id === parseInt(req.params.todo_id)
@@ -113,7 +113,7 @@ app.patch("/todos/:todo_id", (req, res) => {
  **	DELETE /todos/:todo_id
  */
 
-app.delete("/todos/:todo_id", (req, res) => {
+app.delete("/api/todos/:todo_id", (req, res) => {
   try {
     var index = dbJSON.todos.findIndex(
       (todo) => todo.id === parseInt(req.params.todo_id)
